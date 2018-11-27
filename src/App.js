@@ -5,11 +5,22 @@ import './App.css';
 class App extends Component {
 
   render() {
-    var helloWorld = 'Добро пожаловать в Путь к изучению React';
-
     return (
       <div className="App">
-        <h2>{helloWorld}</h2>
+        {
+          LIST.map( function (item) {
+            return (
+              <div key={item.objectID}>
+                <span>
+                  <a href={item.url}>{item.title}</a>
+                </span>
+                <span>{item.author}</span>
+                <span>{item.num_comments}</span>
+                <span>{item.points}</span>
+              </div>
+            );
+          })
+        }
       </div>
     );
   }

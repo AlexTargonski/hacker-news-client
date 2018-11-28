@@ -3,12 +3,26 @@ import { LIST }             from './list';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: LIST
+    };
+
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  onDismiss(id) {
+    const isNotId = item => item.objectID !== id;
+    const updatedList = this.state.list.filter(isNotId);
+    this.setState({ list: updatedList });
+  }
 
   render() {
     return (
       <div className="App">
         {
-          LIST.map( item =>
+          this.state.list.map( item =>
             <div key={item.objectID}>
               <span>
                 <a href={item.url}>{item.title}</a>
@@ -16,6 +30,14 @@ class App extends Component {
               <span>{item.author}</span>
               <span>{item.num_comments}</span>
               <span>{item.points}</span>
+              <span>
+                <button
+                  onClick={() => this.onDismiss(item.objectID)}
+                  type="button"
+                >
+                  delete
+                </button>
+              </span>
             </div>
           )
         }

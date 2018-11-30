@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React  from 'react';
 
-import Button               from './button';
+import Button from './button';
 
 function isSearched(searchTerm) {
   return function(item) {
@@ -8,10 +8,8 @@ function isSearched(searchTerm) {
   }
 }
 
-class Table extends Component {
-  render() {
-    const { list, pattern, onDismiss } = this.props;
-    return (
+function Table({list, pattern, onDismiss}) {
+  return (
     <div>
       {
         list.filter(isSearched(pattern)).map(item =>
@@ -31,7 +29,6 @@ class Table extends Component {
       )}
     </div>
     );
-  }
 }
 
 export default Table;

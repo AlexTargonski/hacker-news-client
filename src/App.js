@@ -60,11 +60,16 @@ class App extends Component {
           Search
         </Search>
         <div className="table-wrapper">
-          <Table
-            list={result.hits}
-            pattern={searchTerm}
-            onDismiss={this.onDismiss}
-          />
+          { result
+            ?
+            <Table
+              list={result.hits}
+              pattern={searchTerm}
+              onDismiss={this.onDismiss}
+            />
+            :
+            null
+          }
         </div>
       </div>
     );

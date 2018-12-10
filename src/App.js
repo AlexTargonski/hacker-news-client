@@ -20,6 +20,8 @@ class App extends Component {
 
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
   }
 
@@ -35,15 +37,26 @@ class App extends Component {
     this.setState({ searchTerm: event.target.value });
   }
 
+  onSearchSubmit(event) {
+    const { searchTerm } = this.state;
+    this.fetchSearchTopStories(searchTerm)
+    event.preventDefault();
+  }
+
   setSearchTopStories(result) {
     this.setState({ result });
   }
+
   componentDidMount() {
     const { searchTerm } = this.state;
+    this.fetchSearchTopStories(searchTerm);
+  }
+
+  fetchSearchTopStories(searchTerm) {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
-    .then(response => response.json())
-    .then(result => this.setSearchTopStories(result))
-    .catch(error => error);
+      .then(response => response.json())
+      .then(result => this.setSearchTopStories(result))
+      .catch(error => error);
   }
 
   render() {
@@ -56,6 +69,7 @@ class App extends Component {
         <Search
           value={searchTerm}
           onChange={this.onSearchChange}
+          onSubmit={this.onSearchSubmit}
         >
           Search
         </Search>
@@ -64,7 +78,6 @@ class App extends Component {
             ?
             <Table
               list={result.hits}
-              pattern={searchTerm}
               onDismiss={this.onDismiss}
             />
             :

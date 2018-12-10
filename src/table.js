@@ -8,11 +8,11 @@ function isSearched(searchTerm) {
   }
 }
 
-function Table({list, pattern, onDismiss}) {
+function Table({ list, onDismiss }) {
   return (
     <div>
       {
-        list.filter(isSearched(pattern)).map(item =>
+        list.map(item =>
         <div key={item.objectID}>
           <span>
             <a href={item.url}>{item.title}</a>

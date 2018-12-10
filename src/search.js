@@ -1,6 +1,11 @@
 import React from 'react';
 
-function Search({value, onChange, children}) {
+function Search({
+  value,
+  onChange,
+  onSubmit,
+  children
+}) {
   return (
     <form>
       {children}
@@ -9,6 +14,9 @@ function Search({value, onChange, children}) {
       value={value}
       onChange={onChange}
       />
+      <button type="submit">
+        {children}
+      </button>
     </form>
   );
 }

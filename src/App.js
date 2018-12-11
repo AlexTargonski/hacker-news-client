@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import Search               from './search';
 import Table                from './table';
-import { LIST }             from './list';
 import './App.css';
 
 const DEFAULT_QUERY = 'redux';
@@ -14,7 +13,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: LIST,
+      result: null,
       searchTerm: DEFAULT_QUERY,
     };
 

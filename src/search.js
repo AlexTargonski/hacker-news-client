@@ -7,7 +7,7 @@ function Search({
   children
 }) {
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       {children}
       <input
       type="text"
